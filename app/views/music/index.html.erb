@@ -1,13 +1,3 @@
-<% if user_signed_in? %>
-    <p>Hello,
-      <% if current_user.admin? %>
-          admin
-      <% else %>
-          user
-      <% end %>
-      , <%= current_user.email %> - <%= link_to 'Sign_out', destroy_user_session_path, :method => 'delete' %></p>
-    <%= button_to "Upadte", { :controller => "music", :action => "update"} %>
-<% end %>
 <h1>Title: <%= unless @news.nil? then @news.name end %></h1>
 <h3>Content: <%=unless @news.nil? then @news.description end %></h3>
 <h3>Date: <%= unless @news.nil? then @news.date.strftime('%B %d, %Y') end %></h3>
