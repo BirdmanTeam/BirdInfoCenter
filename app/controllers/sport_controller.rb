@@ -1,0 +1,2 @@
+class SportController < ApplicationController
+end
