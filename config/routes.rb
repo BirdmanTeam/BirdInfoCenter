@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
   root 'news#index'
-  get "music/update" => "music#update"
-  devise_for :users, controllers: { registrations: "registrations" }
-  resources :music
+  devise_for :users, controllers: { registrations: 'registrations' }
+  get 'music/' => 'music#index'
+  get 'parse_news' => 'news#parse_news'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
