@@ -28,6 +28,7 @@ gem 'nokogiri', '~> 1.6.6.2'
 gem 'devise'
 # A Ruby object-oriented interface to the Yahoo! Weather JSON API.
 gem 'yahoo_weather', '~> 1.1.1'
+gem 'weather-icons-rails'
 gem 'figaro'
 
 # Use ActiveModel has_secure_password

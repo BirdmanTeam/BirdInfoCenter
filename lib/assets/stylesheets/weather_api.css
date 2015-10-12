@@ -1,0 +1,19 @@
+.weather-container{
+    width:100px;
+    text-align: center;
+    background-image: url('weather_api_bg.jpg');
+    border-radius: 15px;
+    border:2px solid;
+}
+
+.weather-current, .weather-type{
+    margin:0;
+}
+
+.wi{
+    font-size: 48px;
+}
+
+.weather-date, .weather-temperature{
+    margin: 10px;
+}
