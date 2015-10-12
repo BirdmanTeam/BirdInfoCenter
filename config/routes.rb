@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'news#index'
+  get "music/update" => "music#update"
   devise_for :users, controllers: { registrations: "registrations" }
   resources :music
   
