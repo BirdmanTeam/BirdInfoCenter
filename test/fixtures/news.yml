@@ -1,37 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 'Hitman killed Diana'
-  description: 'Throughout history contract killing has been associated with organized crime and with vendettas. For example,'' in recent United States history, the gang Murder, Inc. committed hundreds of murders on behalf of the National Crime Syndicate.'
-  branch: 'Politic'
-  popular: true
-  date: 2015-09-29 15:00:00
+  name: MyString
+  description: MyText
+  branch: MyString
+  popular: false
+  date: 2015-10-12 13:05:17
 
 two:
-  name: 'Ronaldo buy new cross'
-  description: 'In Amazon'
-  branch: 'Sport'
+  name: MyString
+  description: MyText
+  branch: MyString
   popular: false
-  date: 2015-10-12 11:23:13
-
-three:
-  name: 'Putin have a birhday'
-  description: 'Putin have age of 63'
-  branch: 'Politic' 
-  popular: false
-  date: 2015-09-29 17:12:10
-
-four:
-  name: 'Sanya lie'
-  description: 'Everyday Sanya said a useless information'
-  branch: 'Economic'
-  popular: true
-  date: 2015-10-12 16:19:00
-
-five:
-  name: 'Starling ill'
-  description: 'October such a cold. Birds a ill'
-  branch: 'Politic'
-  popular: false
-  date: 2015-10-12 16:19:00
-
+  date: 2015-10-12 13:05:17
