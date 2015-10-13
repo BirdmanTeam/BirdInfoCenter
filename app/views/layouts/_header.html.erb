@@ -1,0 +1,19 @@
+<header>
+  <section class="nav-wrapper cf">
+    <div class="logo"></div>
+    <nav class="cf">
+      <ul>
+        <li><%= link_to 'Home', :controller => '/news', :action => 'index' %></li>
+        <li><%= link_to 'Sport', :controller => '/sport', :action => 'index' %></li>
+        <li><%= link_to 'Music', :controller => '/music', :action => 'index' %></li>
+        <li><%= link_to 'Politic', :controller => '/politic', :action => 'index' %></li>
+        <li><%= link_to 'Economic', :controller => '/economic', :action => 'index' %></li>
+        <% if user_signed_in? %>
+            <li><%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %></li>
+        <% else %>
+            <li><%= link_to 'Sign in', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </section>
+</header>

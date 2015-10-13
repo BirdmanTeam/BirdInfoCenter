@@ -1,21 +1,22 @@
 <section class="content-wrapper cf">
   <article class="articles-wrapper">
-        <%= render 'layouts/articles', :collection => @news  %>
+        <%= render 'layouts/articles', :collection => @sport  %>
   </article>
   <aside class="cf" id="sidebar">
     <section>
       <h1>Popular</h1>
       <% counter = 0 %>
-      <% @news.each do |article| %>
+      <% @sport.each do |article| %>
           <% if article.popular %>
               <div class="news-item"><%= link_to article.name, news_path(article) %><a href="#">(5)</a></div>
           <% end %>
           <% break if (counter += 1) == 3 %>
       <% end %>
     </section>
-  <div class="weather">
+    <div class="weather">
        <%=raw @weather_api %>
     </div>
+   
   </aside>
 
 </section>

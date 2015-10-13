@@ -1,0 +1,27 @@
+<section class="content-wrapper cf">
+	<article class="articles-wrapper">
+		<section class="article-type-2">
+		    <header>
+                <h2><%= @article.name %></h2>
+				<time datetime="" ><%= @article.date.strftime('%B, %e %Y') %></time>
+				<blockquote>
+  					<p><%= @article.description %></p>
+ 			 		<footer><%= link_to '<' + @article.branch + '>', music_path %></footer>
+			    </blockquote>
+		    </header>
+		</section>
+	</article>
+	<aside class="cf" id="sidebar">
+		<section>
+			<h1>Popular</h1>
+			<div class="news-item"><a href="#f">Lorem ipsum dolor sit amet ipsum.</a><a href="#">(5)</a></div>
+			<div class="news-item"><a href="#r">Lorem ipsum dolor sit amet, consectetur adipisicing.</a><a href="#">(7)</a></div>
+			<div class="news-item"><a href="#s">Lorem ipsum dolor.</a><a href="#">(14)</a></div>
+		</section>
+
+          <div class="weather">
+       <%=raw @weather_api %>
+    </div>
+	</aside>
+
+</section>

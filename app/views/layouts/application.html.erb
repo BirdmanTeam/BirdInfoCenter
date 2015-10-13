@@ -5,20 +5,30 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'logo.png' %>
 </head>
 <body>
-<% if user_signed_in? %>
-    <p>Hello,
-      <% if current_user.admin? %>
-          admin
-      <% else %>
-          user
-      <% end %>
-      , <%= current_user.email %> - <%= link_to 'Sign_out', destroy_user_session_path, :method => 'delete' %></p>
-    <%= link_to 'Update news', :controller => 'news', :action => 'parse_news' %>
-<% end %>
+    <% if user_signed_in? %>
+        <div class="admin-panel">
+            <h3>Hello, </h3>
+            <% if current_user.admin? %>
+                <p>admin</p>
+            <% else %>
+                <p>user</p>
+            <% end %>
+            <h3>.</h3>
+            <%= button_to 'Update news', :controller => 'news', :action => 'parse_news' %>
+        </div>
+    <% end %>
+    <div class="main-wrapper">
+        <%= render 'layouts/header' %>
+        <%= yield %>
+        <%= render 'layouts/footer' %>
+    </div>
 
-<%= yield %>
-
-</body>
+    <%= javascript_tag do %>
+        var current_controller = '<%= controller.controller_name %>';
+        select_current_page(current_controller);
+    <% end %>
+    </body>
 </html>

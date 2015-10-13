@@ -10,7 +10,46 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.min
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+function select_current_page(controller_name){
+    var menu_elems = $('.nav-wrapper ul li a');
+    switch(controller_name){
+        case 'news':
+                menu_elems.eq(0).addClass('choosen-grope');
+            break;
+        case 'sport':
+                menu_elems.eq(1).addClass('choosen-grope');
+            break;
+        case 'music':
+                menu_elems.eq(2).addClass('choosen-grope');
+            break;
+        case 'politic':
+                menu_elems.eq(3).addClass('choosen-grope');
+            break;
+        case 'economic':
+                menu_elems.eq(4).addClass('choosen-grope');
+            break;
+        case 'sessions':
+                menu_elems.eq(5).addClass('choosen-grope');
+            break;
+    }
+}
+
+$(document).ready(function(){
+
+    var $aside = $("#sidebar");
+
+    $(window).scroll(function(){
+        if ( $(this).scrollTop() > 500 && !$aside.hasClass("sidebarfixed")){
+            $aside.addClass("sidebarfixed").hide().fadeTo("slow",1);
+
+
+        } else if($(this).scrollTop() <= 500 && $aside.hasClass("sidebarfixed")) {
+            $aside.removeClass("sidebarfixed");
+        }
+    });
+});
