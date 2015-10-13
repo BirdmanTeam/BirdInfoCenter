@@ -1,3 +1,15 @@
+<% if user_signed_in? %>
+    <div class="admin-panel">
+      <h3>Hello, </h3>
+      <% if current_user.admin? %>
+          <p>admin</p>
+      <% else %>
+          <p>user</p>
+      <% end %>
+      <h3>.</h3>
+      <%= button_to 'Update news', {:controller => 'news', :action => 'parse_news'}, :method => 'get' %>
+    </div>
+<% end %>
 <header>
   <section class="nav-wrapper cf">
     <div class="logo"></div>

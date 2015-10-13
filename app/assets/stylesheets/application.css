@@ -238,8 +238,8 @@ aside, .weather {
 }
 
 .weather {
-    background: none;
-    
+    margin-top:0;
+    padding: 15px 0;
 }
 
 .sidebarfixed{
