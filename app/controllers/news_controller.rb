@@ -9,6 +9,14 @@ class NewsController < ApplicationController
   end
 
   def parse_news
+    update_music
+
+    redirect_to :back
+  end
+
+  private
+
+  def update_music
     url = open('http://www.rollingstone.com/music/news')
 
     doc = Nokogiri::HTML(url)
@@ -27,8 +35,20 @@ class NewsController < ApplicationController
       @date = ("#{day}/#{month}/#{year}").to_time
 
       @content = article_doc.css('.article-content p').text
-      News.create(name: @title, description: @content, branch: 'music', date: @date)
+      News.create(name: @title, description: @content, branch: 'Music', date: @date)
     end
+  end
+
+  def update_sport
+
+  end
+
+  def update_economic
+
+  end
+
+  def update_politic
+
   end
 
 end
