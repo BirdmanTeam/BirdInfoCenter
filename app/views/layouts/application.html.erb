@@ -8,18 +8,6 @@
   <%= favicon_link_tag 'logo.png' %>
 </head>
 <body>
-    <% if user_signed_in? %>
-        <div class="admin-panel">
-            <h3>Hello, </h3>
-            <% if current_user.admin? %>
-                <p>admin</p>
-            <% else %>
-                <p>user</p>
-            <% end %>
-            <h3>.</h3>
-            <%= button_to 'Update news', :controller => 'news', :action => 'parse_news' %>
-        </div>
-    <% end %>
     <div class="main-wrapper">
         <%= render 'layouts/header' %>
         <%= yield %>
