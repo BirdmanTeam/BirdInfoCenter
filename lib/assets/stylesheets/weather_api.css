@@ -1,5 +1,5 @@
 .weather-container{
-    width:100px;
+    width:150px;
     text-align: center;
     background-image: url('weather_api_bg.jpg');
     border-radius: 15px;
@@ -12,6 +12,7 @@
 
 .wi{
     font-size: 48px;
+    margin:10px;
 }
 
 .weather-date, .weather-temperature{
