@@ -18,7 +18,7 @@ class NewsController < ApplicationController
   private
 
   def update_music
-    count_of_pages = 5
+    count_of_pages = 1
     i = 1
     while i<=count_of_pages
       if i==1
@@ -52,7 +52,7 @@ class NewsController < ApplicationController
   end
 
   def update_economic
-    count_of_pages = 5
+    count_of_pages = 1
     i = 1
     while i<=count_of_pages
       if i==1

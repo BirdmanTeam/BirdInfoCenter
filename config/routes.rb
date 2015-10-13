@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'music/' => 'music#index'
   get 'economic/' => 'economic#index'
+  get 'politic/' => 'politic#index'
+  get 'sport/' => 'sport#index'
   get 'parse_news' => 'news#parse_news'
   
   # The priority is based upon order of creation: first created -> highest priority.
