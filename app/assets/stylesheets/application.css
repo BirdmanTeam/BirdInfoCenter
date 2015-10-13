@@ -26,6 +26,9 @@
     box-sizing: border-box;
 }
 
+p {
+    text-align: justify;
+}
 
 a{
     text-decoration: none;
@@ -100,7 +103,8 @@ nav a:hover {
 }
 
 .content-wrapper {
-    padding: 15px 0;
+    padding-bottom: 15px;
+    min-height: calc(100vh - 101px);
 }
 
 .content-wrapper .article:nth-child(2n){
@@ -128,10 +132,10 @@ nav a:hover {
 
 .content-wrapper .articles-wrapper .article {
     float: left;
-    margin: 20px 0;
-    padding: 10px 0;
+    padding: 30px 0;
     width: 100%;
     display: block;
+    position: relative;
 }
 
 .content-wrapper .articles-wrapper .article section img {
@@ -148,37 +152,36 @@ nav a:hover {
     float: left;
 }
 
-.content-wrapper .articles-wrapper .article section >article p {
-    overflow: hidden;
-    max-height: 50px;
-}
-
 .content-wrapper .articles-wrapper .article p{
     text-align: justify;
 }
 
-.content-wrapper .articles-wrapper .article {
-    position: relative;
-}
-
 .content-wrapper .articles-wrapper .article article:after {
-    content: "Click for more info...";
-    right: 0;
+    content: "More >>";
+    right: 10px;
     bottom: 0;
     position: absolute;
     font-size: 0.5em;
     color: #ff9c00;
 }
 
+.content-wrapper .articles-wrapper .article article{
+    max-height: 135px;
+    overflow: hidden;
+}
+
 /* for 1 article */
 .content-wrapper .articles-wrapper header h2 {
-    font-size: 2.5em;
+    font-size: 2em;
     line-height: 1.2;
+    margin-top: 10px;
 }
 
 .content-wrapper .articles-wrapper header blockquote {
     margin: 20px 0 0 20px;
     font-style: italic;
+    font-size: 1.5em;
+    line-height: 1.6;
     border-left: 2px solid #D9D7D7;
     padding-left: 10px;
 }
@@ -269,6 +272,10 @@ aside .news-item{
     font-size: 1.1em;
 }
 
+aside .news-item:last-child {
+    margin-bottom: 0;
+}
+
 aside .news-item a:last-child {
     margin-left: 5px;
     color: #eee;
@@ -307,33 +314,33 @@ address .icon {
 }
 
 address .fb {
-    background: url(../images/icon_fb.png) center center no-repeat;
+    background: url(icon_fb.png) center center no-repeat;
     height: 20px;
     width: 11px;
 }
 
 address .fb:hover {
-    background: url(../images/icon_fb_hover.png);
+    background: url(icon_fb_hover.png);
 }
 
 address .yt {
-    background: url(../images/icon_yt.png) center center no-repeat;
+    background: url(icon_yt.png) center center no-repeat;
     height: 21px;
     width: 20px;
 }
 
 address .yt:hover {
-    background: url(../images/icon_yt_hover.png);
+    background: url(icon_yt_hover.png);
 }
 
 address .vk {
-    background: url(../images/vk.png) center center no-repeat;
+    background: url(vk.png) center center no-repeat;
     height: 11px;
     width: 24px;
 }
 
 address .vk:hover {
-    background: url(../images/vk_hover.png);
+    background: url(vk_hover.png);
 }
 
 .weather-container{
@@ -343,10 +350,6 @@ address .vk:hover {
 blockquote footer a{
     color: #ff9c00;
     font-weight: bold;
-}
-
-.content-wrapper{
-    min-height:467px;
 }
 
 .no-articles{

@@ -8,6 +8,7 @@
   					<p><%= @article.description %></p>
  			 		<footer><%= link_to '<' + @article.branch + '>', music_path %></footer>
 			    </blockquote>
+
 		    </header>
 		</section>
 	</article>
@@ -22,10 +23,9 @@
                   <% break if (counter += 1) == 3 %>
               <% end %>
 		</section>
-
-          <div class="weather">
-       <%=raw @weather_api %>
-    </div>
 	</aside>
+  <div class="weather">
+    <%=raw @weather_api %>
+  </div>
 
 </section>

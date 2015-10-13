@@ -9,7 +9,7 @@ class Constant
         '18' =>	'wi-sleet', '19' =>	'wi-dust', '20' =>	'wi-day-fog',
         '21' =>	'wi-day-haze', '22' =>	'wi-smoke', '23' =>	'wi-strong-wind',
         '24' =>	'wi-cloudy-windy', '25' =>	'wi-snowflake-cold', '26' =>	'wi-cloudy',
-        '27' =>	'wi-night-cloudy-high', '28' =>	'wi-day-cloudy-high', '29' =>	'wi-night-alt-cloudy',
+        '27' =>	'wi-night-cloudy-high', '28' =>	'wi-day-cloudy-high', '29' =>	'wi-night-cloudy',
         '30' =>	'wi-day-cloudy', '31' =>	'wi-night-clear', '32' =>	'wi-day-sunny',
         '33' =>	'wi-night-clear', '34' =>	'wi-day-sunny', '35' =>	'wi-rain-mix',
         '36' =>	'wi-hot', '37' =>	'wi-day-thunderstorm', '38' =>	'wi-day-thunderstorm',

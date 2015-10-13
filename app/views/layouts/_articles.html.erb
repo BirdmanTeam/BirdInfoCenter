@@ -10,10 +10,10 @@
             <article>
                 <header>
                     <h2><%= article.name %></h2>
-                    <time datetime="" ><% article.date.strftime('%d.%m.%Y') %></time>
+                    <time datetime="" ><%= article.date.strftime('%d.%m.%Y') %></time>
                 </header>
                 <article>
-                    <p><%= article.description %></p>
+                    <p><%= article.description.truncate(450, separator:' ') %></p>
                 </article>
             </article>
         </section>

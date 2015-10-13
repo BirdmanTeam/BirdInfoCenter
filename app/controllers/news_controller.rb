@@ -2,17 +2,20 @@ class NewsController < ApplicationController
 
   def index
     @weather_api = weather_api
-    @news = News.paginate(:page => params[:page], :per_page => 30)
+    @news = News.paginate(:page => params[:page], :per_page => 10).order(:date).reverse_order
   end
 
   def parse_news
+    News.delete_all
     update_music
     update_economic
     redirect_to :back
   end
 
   def show
+    @weather_api = weather_api
     @article = News.find(params[:id])
+    @news = News.all
   end
 
   private
