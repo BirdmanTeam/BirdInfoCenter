@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'news#index'
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'music/' => 'music#index'
+  get 'economic/' => 'economic#index'
   get 'parse_news' => 'news#parse_news'
   
   # The priority is based upon order of creation: first created -> highest priority.
