@@ -1,6 +1,7 @@
 <section class="content-wrapper cf">
   <article class="articles-wrapper">
         <%= render 'layouts/articles', :collection => @music  %>
+        <%= will_paginate @music %>
   </article>
   <aside class="cf" id="sidebar">
     <section>
