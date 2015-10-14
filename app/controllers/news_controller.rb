@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+  include NewsHelper
 
   def index
     @weather_api = weather_api
@@ -8,9 +9,10 @@ class NewsController < ApplicationController
   def parse_news
     News.delete_all
 
+    update_sport(2)
     update_music(2)
-    update_economic(2)
     update_politic(2)
+    update_economic(2)
 
     redirect_to :back
   end
@@ -49,7 +51,7 @@ class NewsController < ApplicationController
 
   def update_politic(count_of_pages)
     count_of_pages.times do |i|
-      url = (i.zero?)? open('http://www.firstpost.com/category/politics') : open('http://www.firstpost.com/category/politics/page/' + (i + 1).to_s)
+      url = open('http://www.firstpost.com/category/politics/page/' + (i + 1).to_s)
 
       doc = Nokogiri::HTML(url)
 
@@ -99,8 +101,33 @@ class NewsController < ApplicationController
     end
   end
 
-  def update_sport
+  def update_sport(count_of_pages)
+    conditions = %w(/gallery/ /picture/ /video/)
 
+    count_of_pages.times do |i|
+      url = open('http://www.theguardian.com/sport?page=' + (i + 1).to_s)
+
+      doc = Nokogiri::HTML(url)
+
+      doc.css('div.fc-item__container').each do |link|
+
+        link_criteria = link.at_css('div.fc-item__content a')['href']
+        next unless check_links(link_criteria, conditions)
+
+        article_url = open(link_criteria)
+        article_doc = Nokogiri::HTML(article_url)
+        title = link.css('span.js-headline-text').text
+
+        date_unformat = article_doc.css('div.content__meta-container .content__dateline').text
+        month = Date::MONTHNAMES.index(date_unformat.split[2]).to_s
+        day = (date_unformat.split[1].to_i + 1).to_s
+        year = date_unformat.split[3]
+        date = ("#{day}/#{month}/#{year}").to_time
+
+        content = article_doc.css('article.content div.content__main div.content__article-body p').text
+        News.create(name: title, description: content, branch: 'Sport', date: date)
+      end
+    end
   end
 
   def set_news
