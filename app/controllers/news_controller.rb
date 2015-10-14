@@ -9,10 +9,10 @@ class NewsController < ApplicationController
   def parse_news
     News.delete_all
 
-    update_sport(2)
-    update_music(2)
-    update_politic(2)
-    update_economic(2)
+    update_music(1)
+    update_economic(1)
+    update_politic(1)
+    update_sport(1)
 
     redirect_to :back
   end
@@ -82,20 +82,15 @@ class NewsController < ApplicationController
 
       doc = Nokogiri::HTML(url)
 
-      doc.css('li div.cnbcnewsstory').each do |link|
+      doc.css('div.cnbcnewsstory').each do |link|
         article_url = open('http://www.cnbc.com' + link.at_css('.headline a')['href'])
         article_doc = Nokogiri::HTML(article_url)
 
-        title = article_doc.css('.title').text
+        title = article_doc.css('div.story-top .title').text
         # @sub_title = article_doc.css('.article-sub-title').text
-        date_unformat = link.css('span.timestamp').text
-        month = date_unformat.split('.')[2]
-        day = (date_unformat.split('.')[1].to_i + 1).to_s
-        year = date_unformat.split('.')[3]
-        year.split[1]
-        date = ("#{day}/#{month}/#{year}").to_time
-        article_doc.css('#result_box')
-        content = article_doc.css('#resul').text
+        date = DateTime.parse(article_doc.at_css('div.story-top time')['datetime']).beginning_of_day
+
+        content = article_doc.css('#article_body p').text
         News.create(name: title, description: content, branch: 'Economic', date: date)
       end
     end
@@ -118,11 +113,7 @@ class NewsController < ApplicationController
         article_doc = Nokogiri::HTML(article_url)
         title = link.css('span.js-headline-text').text
 
-        date_unformat = article_doc.css('div.content__meta-container .content__dateline').text
-        month = Date::MONTHNAMES.index(date_unformat.split[2]).to_s
-        day = (date_unformat.split[1].to_i + 1).to_s
-        year = date_unformat.split[3]
-        date = ("#{day}/#{month}/#{year}").to_time
+        date = DateTime.parse(article_doc.at_css('div.content__meta-container .content__dateline time')['datetime']).beginning_of_day
 
         content = article_doc.css('article.content div.content__main div.content__article-body p').text
         News.create(name: title, description: content, branch: 'Sport', date: date)
