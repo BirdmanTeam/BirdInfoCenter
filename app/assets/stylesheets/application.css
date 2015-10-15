@@ -379,28 +379,3 @@ blockquote footer a{
 .admin-panel form{
     margin-left:20px;
 }
-
-#load_screen > #loading{
-    color: #ff9c00;
-    width:120px;
-    height: 24px;
-    margin: 300px auto;
-}
-
-#load_screen {
-    background: #000;
-    opacity: 0.25;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#loading-animation{
-    width: 100vw;
-    height: 100vh;
-    background-image: url("http://i.stack.imgur.com/MnyxU.gif");
-    background-repeat: no-repeat;
-    background-position: center;
-}

@@ -8,14 +8,6 @@
   <%= favicon_link_tag 'logo.png' %>
 </head>
 <body>
-    <div id="load_screen">
-      <div id="loading">
-        Loading
-        <div id="loading-animation">
-          Loading&#8230;
-        </div>
-      </div>
-    </div>
     <div class="main-wrapper">
         <%= render 'layouts/header' %>
         <%= yield %>
@@ -27,5 +19,5 @@
         var current_action = '<%= controller.action_name %>';
         select_current_page(current_controller, current_action);
     <% end %>
-    </body>
+</body>
 </html>
