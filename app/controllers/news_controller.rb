@@ -9,12 +9,13 @@ class NewsController < ApplicationController
   def parse_news
     News.delete_all
 
+    redirect_to :back
+
     update_music(1)
     update_economic(1)
     update_politic(1)
     update_sport(1)
 
-    redirect_to :back
   end
 
   def show

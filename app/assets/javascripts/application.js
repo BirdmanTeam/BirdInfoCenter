@@ -15,27 +15,39 @@
 //= require turbolinks
 //= require_tree .
 
-function select_current_page(controller_name){
+function select_current_page(controller_name, controller_action){
     var menu_elems = $('.nav-wrapper ul li a');
-    switch(controller_name){
-        case 'news':
+    var do_active;
+    switch(controller_action){
+        case 'index':
+        case 'new':
+                do_active = true;
+            break;
+        default:
+                do_active = false;
+            break;
+    }
+    if (do_active) {
+        switch (controller_name) {
+            case 'news':
                 menu_elems.eq(0).addClass('choosen-grope');
-            break;
-        case 'sport':
+                break;
+            case 'sport':
                 menu_elems.eq(1).addClass('choosen-grope');
-            break;
-        case 'music':
+                break;
+            case 'music':
                 menu_elems.eq(2).addClass('choosen-grope');
-            break;
-        case 'politic':
+                break;
+            case 'politic':
                 menu_elems.eq(3).addClass('choosen-grope');
-            break;
-        case 'economic':
+                break;
+            case 'economic':
                 menu_elems.eq(4).addClass('choosen-grope');
-            break;
-        case 'sessions':
+                break;
+            case 'sessions':
                 menu_elems.eq(5).addClass('choosen-grope');
-            break;
+                break;
+        }
     }
 }
 
