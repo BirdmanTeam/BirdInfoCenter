@@ -6,7 +6,7 @@
 <% collection.each do |article| %>
     <%= link_to news_path(article), :class => 'article' do %>
         <section>
-            <img src="" alt="img">
+            <%= image_tag article.source %>
             <article>
                 <header>
                     <h2><%= article.name %></h2>

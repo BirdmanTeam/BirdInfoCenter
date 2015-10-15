@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'economic/' => 'economic#index'
   get 'politic/' => 'politic#index'
   get 'parse_news' => 'news#parse_news'
+  get 'test/' => 'test_parse_news#index'
   resources :news, only: [:show, :index]
   
   # The priority is based upon order of creation: first created -> highest priority.

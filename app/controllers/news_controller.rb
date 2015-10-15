@@ -35,8 +35,15 @@ class NewsController < ApplicationController
         article_url = open('http://www.rollingstone.com' + link.at_css('.list-item-hd a')['href'])
         article_doc = Nokogiri::HTML(article_url)
 
-        title = article_doc.css('.article-title').text
+        if article_doc.at_css('.article-img-holder img')
+          source = article_doc.at_css('.article-img-holder img').attr('src')
+        elsif article_doc.at_css('.article-img-holder iframe')
+          source = article_doc.at_css('.article-img-holder iframe').attr('src')
+        else
+          source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
+        end
 
+        title = article_doc.css('.article-title').text
         date_unformat = link.css('span.datestamp').text
         month = Date::MONTHNAMES.index(date_unformat.split[0])
         day = (date_unformat.split[1][0..-2].to_i + 1).to_s
@@ -44,7 +51,7 @@ class NewsController < ApplicationController
         date = ("#{day}/#{month}/#{year}").to_time
 
         content = article_doc.css('.article-content p').text
-        News.create(name: title, description: content, branch: 'Music', date: date)
+        News.create(name: title, description: content, branch: 'Music', date: date, source: source)
       end
     end
   end
@@ -62,8 +69,16 @@ class NewsController < ApplicationController
         doc.css(criteria).each do |link|
           article_url = open(link.at_css(link_criteria)['href'])
           article_doc = Nokogiri::HTML(article_url)
-          title = article_doc.css('.artTitle').text
 
+          if article_doc.at_css('.wp-caption img')
+            source = article_doc.at_css('.wp-caption img').attr('data-original')
+            #elsif article_doc.at_css('.article-img-holder iframe')
+            #   @source = article_doc.at_css('.article-img-holder iframe').attr('src')
+          else
+            source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
+          end
+
+          title = article_doc.css('.artTitle').text
           date_unformat = link.css(date_criteria).text
           month = Date::ABBR_MONTHNAMES.index(date_unformat.split[0]).to_s
           day = (date_unformat.split(',')[0].split[1].to_i + 1).to_s
@@ -71,7 +86,7 @@ class NewsController < ApplicationController
           date = ("#{day}/#{month}/#{year}").to_time
 
           content = article_doc.css('div.fullCont1').text
-          News.create(name: title, description: content, branch: 'Politic', date: date)
+          News.create(name: title, description: content, branch: 'Politic', date: date, source: source)
         end
     end
   end
@@ -86,12 +101,12 @@ class NewsController < ApplicationController
         article_url = open('http://www.cnbc.com' + link.at_css('.headline a')['href'])
         article_doc = Nokogiri::HTML(article_url)
 
-        title = article_doc.css('div.story-top .title').text
-        # @sub_title = article_doc.css('.article-sub-title').text
-        date = DateTime.parse(article_doc.at_css('div.story-top time')['datetime']).beginning_of_day
+        source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
 
+        title = article_doc.css('div.story-top .title').text
+        date = DateTime.parse(article_doc.at_css('div.story-top time')['datetime']).beginning_of_day
         content = article_doc.css('#article_body p').text
-        News.create(name: title, description: content, branch: 'Economic', date: date)
+        News.create(name: title, description: content, branch: 'Economic', date: date, source: source)
       end
     end
   end
@@ -111,12 +126,13 @@ class NewsController < ApplicationController
 
         article_url = open(link_criteria)
         article_doc = Nokogiri::HTML(article_url)
+
+        source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
+
         title = link.css('span.js-headline-text').text
-
         date = DateTime.parse(article_doc.at_css('div.content__meta-container .content__dateline time')['datetime']).beginning_of_day
-
         content = article_doc.css('article.content div.content__main div.content__article-body p').text
-        News.create(name: title, description: content, branch: 'Sport', date: date)
+        News.create(name: title, description: content, branch: 'Sport', date: date, source: source)
       end
     end
   end
