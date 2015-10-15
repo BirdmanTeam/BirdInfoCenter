@@ -9,13 +9,12 @@ class NewsController < ApplicationController
   def parse_news
     News.delete_all
 
-    redirect_to :back
-
     update_music(1)
     update_economic(1)
     update_politic(1)
     update_sport(1)
 
+    redirect_to root_path
   end
 
   def show
@@ -98,7 +97,7 @@ class NewsController < ApplicationController
   end
 
   def update_sport(count_of_pages)
-    conditions = %w(/gallery/ /picture/ /video/)
+    conditions = %w(/gallery/ /picture/ /video/ /live/)
 
     count_of_pages.times do |i|
       url = open('http://www.theguardian.com/sport?page=' + (i + 1).to_s)
