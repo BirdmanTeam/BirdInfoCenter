@@ -36,11 +36,14 @@ class NewsController < ApplicationController
         article_doc = Nokogiri::HTML(article_url)
 
         if article_doc.at_css('.article-img-holder img')
-          source = article_doc.at_css('.article-img-holder img').attr('src')
+          photo = article_doc.at_css('.article-img-holder img').attr('src')
+          video = 'none'
         elsif article_doc.at_css('.article-img-holder iframe')
-          source = article_doc.at_css('.article-img-holder iframe').attr('src')
+          video = article_doc.at_css('.article-img-holder iframe').attr('src')
+          photo ='none'
         else
-          source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
+          photo = 'none'
+          video = 'none'
         end
 
         title = article_doc.css('.article-title').text
@@ -51,7 +54,7 @@ class NewsController < ApplicationController
         date = ("#{day}/#{month}/#{year}").to_time
 
         content = article_doc.css('.article-content p').text
-        News.create(name: title, description: content, branch: 'Music', date: date, source: source)
+        News.create(name: title, description: content, branch: 'Music', date: date, photo: photo, video: video)
       end
     end
   end
@@ -71,11 +74,14 @@ class NewsController < ApplicationController
           article_doc = Nokogiri::HTML(article_url)
 
           if article_doc.at_css('.wp-caption img')
-            source = article_doc.at_css('.wp-caption img').attr('data-original')
+            photo = article_doc.at_css('.wp-caption img').attr('data-original')
+            video = 'none'
+            #This code for parse video if it exist
             #elsif article_doc.at_css('.article-img-holder iframe')
             #   @source = article_doc.at_css('.article-img-holder iframe').attr('src')
           else
-            source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
+            photo = 'none'
+            video = 'none'
           end
 
           title = article_doc.css('.artTitle').text
@@ -86,7 +92,7 @@ class NewsController < ApplicationController
           date = ("#{day}/#{month}/#{year}").to_time
 
           content = article_doc.css('div.fullCont1').text
-          News.create(name: title, description: content, branch: 'Politic', date: date, source: source)
+          News.create(name: title, description: content, branch: 'Politic', date: date, photo: photo, video: video)
         end
     end
   end
@@ -101,12 +107,22 @@ class NewsController < ApplicationController
         article_url = open('http://www.cnbc.com' + link.at_css('.headline a')['href'])
         article_doc = Nokogiri::HTML(article_url)
 
-        source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
+        if article_doc.css('.embed-container iframe')
+          #Paste iframe in video
+          video = 'none'
+          photo = 'none'
+        elsif article_doc.css('.embed-container img')
+          photo = article_doc.css('.embed-container img')[0]['src']
+          video = 'none'
+        else
+          photo = 'none'
+          video = 'none'
+        end
 
         title = article_doc.css('div.story-top .title').text
         date = DateTime.parse(article_doc.at_css('div.story-top time')['datetime']).beginning_of_day
         content = article_doc.css('#article_body p').text
-        News.create(name: title, description: content, branch: 'Economic', date: date, source: source)
+        News.create(name: title, description: content, branch: 'Economic', date: date, photo: photo, video: video)
       end
     end
   end
@@ -127,12 +143,21 @@ class NewsController < ApplicationController
         article_url = open(link_criteria)
         article_doc = Nokogiri::HTML(article_url)
 
-        source = 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif'
+        if article_doc.at_css('.article__img-container img')
+          photo = article_doc.at_css('.article__img-container img').attr('src')
+          video = 'none'
+          # elsif article_doc.at_css('.article-img-holder iframe')
+          #   video = article_doc.at_css('.article-img-holder iframe').attr('src')
+          #   photo ='none'
+        else
+          photo = 'none'
+          video = 'none'
+        end
 
         title = link.css('span.js-headline-text').text
         date = DateTime.parse(article_doc.at_css('div.content__meta-container .content__dateline time')['datetime']).beginning_of_day
         content = article_doc.css('article.content div.content__main div.content__article-body p').text
-        News.create(name: title, description: content, branch: 'Sport', date: date, source: source)
+        News.create(name: title, description: content, branch: 'Sport', date: date, photo: photo, video: video)
       end
     end
   end
