@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EconomicControllerTest < ActionController::TestCase
+class EconomicsControllerTest < ActionController::TestCase
  describe "GET #index" do
     it "assigns all pages as @pages" do
       page = Page.create! valid_attributes

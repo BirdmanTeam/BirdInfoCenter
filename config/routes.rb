@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'music/' => 'music#index'
   get 'sport/' => 'sport#index'
-  get 'economic/' => 'economic#index'
+  get 'economics/' => 'economics#index'
   get 'politic/' => 'politic#index'
   get 'parse_news' => 'news#parse_news'
   get 'test/' => 'test_parse_news#index'

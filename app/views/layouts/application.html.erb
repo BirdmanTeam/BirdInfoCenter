@@ -8,6 +8,9 @@
   <%= favicon_link_tag 'logo.png' %>
 </head>
 <body>
+    <div class="row" id="preload">
+      <div class="spinner"></div>
+    </div>
     <div class="main-wrapper">
         <%= render 'layouts/header' %>
         <%= yield %>
