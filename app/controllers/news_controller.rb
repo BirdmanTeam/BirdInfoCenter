@@ -146,6 +146,7 @@ class NewsController < ApplicationController
         if article_doc.at_css('.article__img-container img')
           photo = article_doc.at_css('.article__img-container img').attr('src')
           video = 'none'
+          #This code for parse video if it exist
           # elsif article_doc.at_css('.article-img-holder iframe')
           #   video = article_doc.at_css('.article-img-holder iframe').attr('src')
           #   photo ='none'
