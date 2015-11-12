@@ -14,7 +14,7 @@
                     <% end %>
                 </figure>
 				<time datetime="" ><%= @article.date.strftime('%B, %e %Y') %></time>
-                  <div class="popularing">
+                <div class="popularing-<%= @article.id %>">
                     <%= render 'popularing', article: @article %>
                   </div>
 				<blockquote>
@@ -25,18 +25,7 @@
 		    </header>
 		</section>
 	</article>
-	<aside class="cf" id="sidebar">
-		<section>
-			<h1>Popular</h1>
-              <% counter = 0 %>
-              <% @news.each do |article| %>
-                  <% if article.popular %>
-                      <div class="news-item"><%= link_to article.name, news_path(article) %><a href="#">(5)</a></div>
-                  <% end %>
-                  <% break if (counter += 1) == 3 %>
-              <% end %>
-		</section>
-	</aside>
+  <%= render 'news/sidebar', collection: @news  %>
   <div class="weather">
     <%=raw @weather_api %>
   </div>

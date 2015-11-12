@@ -4,6 +4,9 @@
     </div>
 <% end %>
 <% collection.each do |article| %>
+    <div class="popularing-<%= article.id %>">
+      <%= render 'news/popularing', article: article %>
+    </div>
     <%= link_to news_path(article), :class => 'article' do %>
         <section>
             <% if article.photo != 'none' %>
@@ -17,9 +20,7 @@
                 <header>
                     <h2><%= article.name %></h2>
                     <time datetime="" ><%= article.date.strftime('%d.%m.%Y') %></time>
-                      <div class="popularing">
-                        <%= render 'news/popularing', article: article %>
-                      </div>
+
                 </header>
                 <article>
                     <p><%= article.description.truncate(220, separator:' ') %></p>

@@ -1,1 +1,1 @@
-$(".popularing").html("<%= escape_javascript(render 'popularing', article: @article) %>");
+$(".popularing-<%= @article.id %>").html("<%= escape_javascript(render 'popularing', article: @article) %>");
