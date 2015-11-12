@@ -12,8 +12,7 @@
  *
  *= require_tree .
  *= require_self
- *= require 'weather_api'
- *= require weather-icons
+ *= require 'yahoo_weather_widget'
  */
 
 .spinner {

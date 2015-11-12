@@ -23,10 +23,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'nokogiri', '~> 1.6.6.2'
 # Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise'
-# A Ruby object-oriented interface to the Yahoo! Weather JSON API.
-gem 'yahoo_weather', '~> 1.1.1'
-#Weather Icons is a font of 92 weather themed icons, ready to be dropped right into Bootstrap or any other project.
-gem 'weather-icons-rails'
+# Gives you an information about weather by zip-code.
+gem 'yahoo_weather_widget', '~> 1.0.5'
 # Figaro was written to make it easy to securely configure Rails applications.
 gem 'figaro'
 # will_paginate is a pagination library that integrates with Ruby on Rails, Sinatra, Merb, DataMapper and Sequel.

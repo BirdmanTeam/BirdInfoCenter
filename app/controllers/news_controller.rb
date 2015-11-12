@@ -2,7 +2,7 @@ class NewsController < ApplicationController
   include NewsHelper
 
   def index
-    @weather_api = weather_api
+    @weather_api = weather_api(922221)
     @news = News.paginate(:page => params[:page], :per_page => 10).order(:date).reverse_order
   end
 
@@ -17,7 +17,7 @@ class NewsController < ApplicationController
   end
 
   def show
-    @weather_api = weather_api
+    @weather_api = weather_api(922221)
     @article = News.find(params[:id])
     @news = News.all
   end

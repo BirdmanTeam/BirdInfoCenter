@@ -23,8 +23,6 @@ module BirdInfoCenter
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.autoload_paths += Dir["#{config.root}/lib/**/"]
-
     ActionMailer::Base.smtp_settings = {
 
         :address        => 'smtp.gmail.com',
@@ -35,5 +33,6 @@ module BirdInfoCenter
         :authentication => 'login',
         :enable_starttls_auto => true
     }
+
   end
 end
