@@ -17,10 +17,14 @@
                 <header>
                     <h2><%= article.name %></h2>
                     <time datetime="" ><%= article.date.strftime('%d.%m.%Y') %></time>
+                      <div class="popularing">
+                        <%= render 'news/popularing', article: article %>
+                      </div>
                 </header>
                 <article>
                     <p><%= article.description.truncate(220, separator:' ') %></p>
                 </article>
+
             </article>
         </section>
     <% end %>

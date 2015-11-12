@@ -22,7 +22,20 @@ class NewsController < ApplicationController
     @news = News.all
   end
 
+  def popularing
+    @article = News.find(params[:id])
+    if request.post?
+      @article.popular=true
+    elsif request.delete?
+      @article.popular=false
+    end
+    @article.save
+    respond_to do |format|
+      format.js #-> only XHR allowed
+    end
+  end
   private
+
 
   def update_music(count_of_pages)
     news_array = Array.new
@@ -165,7 +178,7 @@ class NewsController < ApplicationController
 
             throw :up_to_date if date < fresh_date unless is_db_empty
 
-            news_array << { name: title, description: content, branch: 'economics', date: date, photo: photo, video: video }
+            news_array << { name: title, description: content, branch: 'Economics', date: date, photo: photo, video: video }
           rescue Exception
           end
         end
