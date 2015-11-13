@@ -11,7 +11,7 @@
         <section>
             <% if article.photo != 'none' %>
                 <%= image_tag article.photo %>
-            <% elsif article.video != 'none'%>
+            <% elsif article.video != 'none' %>
                 <%= image_tag 'video-found.jpg' %>
             <% else %>
                 <%= image_tag article.branch.downcase + '-photo-not-found.jpg' %>

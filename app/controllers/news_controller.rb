@@ -28,7 +28,6 @@ class NewsController < ApplicationController
     @article.save
 
     @@current_controller = params[:type] unless params[:type] == 'news'
-    puts 'c: ' + @@current_controller
     @news = (@@current_controller == 'home')? News.all.where(:popular => true) : News.all.where(:branch => @@current_controller, :popular => true)
 
     respond_to do |format|
@@ -60,8 +59,9 @@ class NewsController < ApplicationController
               photo = article_doc.at_css('.article-img-holder img').attr('src')
               video = 'none'
             elsif article_doc.at_css('.article-img-holder iframe')
-              video = article_doc.at_css('.article-img-holder iframe').attr('src')
               photo ='none'
+              # For parse video if it exist
+              # video = article_doc.at_css('.article-img-holder iframe').attr('src')
             else
               photo = 'none'
               video = 'none'
@@ -113,9 +113,10 @@ class NewsController < ApplicationController
             if article_doc.at_css('.wp-caption img')
               photo = article_doc.at_css('.wp-caption img').attr('data-original')
               video = 'none'
-              #This code for parse video if it exist
-              #elsif article_doc.at_css('.article-img-holder iframe')
-              #   @source = article_doc.at_css('.article-img-holder iframe').attr('src')
+            elsif article_doc.at_css('.article-img-holder iframe')
+              photo = 'none'
+              # For parse video if it exist
+              # video = article_doc.at_css('.article-img-holder iframe').attr('src')
             else
               photo = 'none'
               video = 'none'
@@ -160,12 +161,15 @@ class NewsController < ApplicationController
             article_url = open('http://www.cnbc.com' + link.at_css('.headline a')['href'])
             article_doc = Nokogiri::HTML(article_url)
 
-            if article_doc.css('.embed-container iframe')
-              #Paste iframe in video
+            if article_doc.at_css('.embed-container img')
+              photo = article_doc.at_css('.embed-container img').attr('src')
               video = 'none'
+            elsif article_doc.at_css('.embed-container iframe')
               photo = 'none'
-            elsif article_doc.css('.embed-container img')
-              photo = article_doc.css('.embed-container img')[0]['src']
+              # For parse video if it exist
+              # video = article_doc.at_css('.embed-container iframe').attr('src')
+            elsif article_doc.at_css('.embed-container img')
+              photo = article_doc.at_css('.embed-container img').attr('src')
               video = 'none'
             else
               photo = 'none'
@@ -213,10 +217,10 @@ class NewsController < ApplicationController
             if article_doc.at_css('.article__img-container img')
               photo = article_doc.at_css('.article__img-container img').attr('src')
               video = 'none'
-              #This code for parse video if it exist
-              # elsif article_doc.at_css('.article-img-holder iframe')
-              #   video = article_doc.at_css('.article-img-holder iframe').attr('src')
-              #   photo ='none'
+            elsif article_doc.at_css('.article-img-holder iframe')
+              photo ='none'
+              # For parse video if it exist
+              # video = article_doc.at_css('.article-img-holder iframe').attr('src')
             else
               photo = 'none'
               video = 'none'

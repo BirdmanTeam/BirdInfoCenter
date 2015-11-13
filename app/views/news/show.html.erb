@@ -9,8 +9,6 @@
                       <%= image_tag @article.photo %>
                     <% elsif @article.video != 'none'%>
                       <%= image_tag 'http://o.aolcdn.com/portaleu/p5/forms/4027/71b59df9-e738-4fd1-826a-65399f83f4c7.jpg' %>
-                    <% else %>
-                      <%= image_tag 'http://www.gobizkorea.com/catalog/images/common/no_article1.gif' %>
                     <% end %>
                 </figure>
 				<time datetime="" ><%= @article.date.strftime('%B, %e %Y') %></time>
