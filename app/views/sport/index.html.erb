@@ -3,7 +3,7 @@
         <%= render 'news/articles', :collection => @sport  %>
         <%= will_paginate @sport %>
   </article>
-  <%= render 'news/sidebar', collection: @sport  %>
+  <%= render 'news/sidebar', collection: @popular  %>
   <div class="weather">
     <%=raw @weather_api %>
   </div>

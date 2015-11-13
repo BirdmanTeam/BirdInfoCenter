@@ -1,3 +1,3 @@
 class News < ActiveRecord::Base
-  BRANCH_TYPES = ['Sport', 'Music', 'Economic', 'Politic']
+  BRANCH_TYPES = ['Sport', 'Music', 'Economics', 'Politic']
 end

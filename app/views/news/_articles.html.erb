@@ -4,8 +4,8 @@
     </div>
 <% end %>
 <% collection.each do |article| %>
-    <div class="popularing-<%= article.id %>">
-      <%= render 'news/popularing', article: article %>
+    <div class="popular-btn popularization-<%= article.id %>">
+      <%= render 'news/popularization', article: article, collection: collection %>
     </div>
     <%= link_to news_path(article), :class => 'article' do %>
         <section>

@@ -1,0 +1,4 @@
+$(".popularization-<%= @article.id %>")
+        .html("<%= escape_javascript(render 'popularization', article: @article) %>");
+$("#popular-news")
+        .html("<%= escape_javascript(render 'popular_news', collection: @news) %>");

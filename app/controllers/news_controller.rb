@@ -1,17 +1,12 @@
 class NewsController < ApplicationController
   include NewsHelper
 
-  def index
-    @weather_api = weather_api(922221)
-    @news = News.paginate(:page => params[:page], :per_page => 10).order(:date).reverse_order
-  end
-
   def parse_news
 
+    update_sport(3)
     update_music(3)
     update_politic(3)
     update_economics(3)
-    update_sport(3)
 
     redirect_to root_path
   end
@@ -20,18 +15,24 @@ class NewsController < ApplicationController
     @weather_api = weather_api(922221)
     @article = News.find(params[:id])
     @news = News.all
+    @popular = @news.where(:popular => true)
   end
 
-  def popularing
+  def popularization
     @article = News.find(params[:id])
     if request.post?
-      @article.popular=true
+      @article.popular = true
     elsif request.delete?
-      @article.popular=false
+      @article.popular = false
     end
     @article.save
+
+    @@current_controller = params[:type] unless params[:type] == 'news'
+    puts 'c: ' + @@current_controller
+    @news = (@@current_controller == 'home')? News.all.where(:popular => true) : News.all.where(:branch => @@current_controller, :popular => true)
+
     respond_to do |format|
-      format.js #-> only XHR allowed
+      format.js
     end
   end
   private

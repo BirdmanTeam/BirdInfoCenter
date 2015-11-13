@@ -14,16 +14,16 @@
 <% end %>
 <header>
   <section class="nav-wrapper cf">
-    <%= link_to :controller => '/news', :action => 'index' do %>
+    <%= link_to home_path do %>
         <div class="logo"></div>
     <% end %>
     <nav class="cf">
       <ul>
-        <li><%= link_to 'Home', :controller => '/news', :action => 'index' %></li>
-        <li><%= link_to 'Sport', :controller => '/sport', :action => 'index' %></li>
-        <li><%= link_to 'Music', :controller => '/music', :action => 'index' %></li>
-        <li><%= link_to 'Politic', :controller => '/politic', :action => 'index' %></li>
-        <li><%= link_to 'Economics', :controller => '/economics', :action => 'index' %></li>
+        <li><%= link_to 'Home', home_path %></li>
+        <li><%= link_to 'Sport', sport_path %></li>
+        <li><%= link_to 'Music', music_path %></li>
+        <li><%= link_to 'Politic', politic_path %></li>
+        <li><%= link_to 'Economics', economics_path %></li>
         <% if user_signed_in? %>
             <li><%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %></li>
         <% else %>

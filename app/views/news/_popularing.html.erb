@@ -1,7 +1,0 @@
-<% if user_signed_in? and current_user.admin? %>
-    <% if article.popular? %>
-        <%= button_to "Unpopular", unpopular_path(article), remote: true, method: :delete %>
-    <% else %>
-        <%= button_to "Popular", popular_path(article), remote: true, method: :post %>
-    <% end %>
-<% end %>

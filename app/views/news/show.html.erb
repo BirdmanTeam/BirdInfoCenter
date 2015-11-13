@@ -15,7 +15,7 @@
                 </figure>
 				<time datetime="" ><%= @article.date.strftime('%B, %e %Y') %></time>
                 <div class="popularing-<%= @article.id %>">
-                    <%= render 'popularing', article: @article %>
+                    <%= render 'popularization', article: @article %>
                   </div>
 				<blockquote>
   					<p><%= @article.description %></p>
@@ -25,7 +25,8 @@
 		    </header>
 		</section>
 	</article>
-  <%= render 'news/sidebar', collection: @news  %>
+
+    <%= render 'sidebar', collection: @popular  %>
   <div class="weather">
     <%=raw @weather_api %>
   </div>
