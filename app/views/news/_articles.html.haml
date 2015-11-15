@@ -1,0 +1,20 @@
+- if collection.empty?
+  .no-articles-container
+    %h1.no-articles There are not news
+- collection.each do |article|
+  %div{:class => "popular-btn popularization-#{article.id}"}
+    = render 'news/popularization', article: article, collection: collection
+  = link_to news_path(article), :class => 'article' do
+    %section
+      - if article.photo != 'none'
+        = image_tag article.photo
+      - elsif article.video != 'none'
+        = image_tag 'video-found.jpg'
+      - else
+        = image_tag article.branch.downcase + '-photo-not-found.jpg'
+      %article
+        %header
+          %h2= article.name
+          %time{:datetime => ""}= article.date.strftime('%d.%m.%Y')
+        %article
+          %p= article.description.truncate(220, separator:' ')

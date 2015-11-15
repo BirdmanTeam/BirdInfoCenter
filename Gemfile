@@ -29,6 +29,7 @@ gem 'yahoo_weather_widget', '~> 1.0.5'
 gem 'figaro'
 # will_paginate is a pagination library that integrates with Ruby on Rails, Sinatra, Merb, DataMapper and Sequel.
 gem 'will_paginate'
+gem 'haml-rails'
 
 group :development, :test do
   # Use rspec-rails for a testing framework
