@@ -1,0 +1,8 @@
+#popular-news
+  - counter = 0
+  - collection.each do |article|
+    - if article.popular
+      .news-item
+        = link_to article.name, news_path(article)
+        = link_to "(#{article.id})", news_path(article), class: 'article-id'
+    - break if (counter += 1) == 3

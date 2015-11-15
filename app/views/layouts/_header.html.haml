@@ -1,0 +1,25 @@
+- if user_signed_in?
+  .admin-panel
+    %h3 Hello,
+    - if current_user.admin?
+      %p admin
+      %h3 .
+      = button_to 'Update news', {:controller => 'news', :action => 'parse_news'}, :method => 'get'
+    - else
+      %p user
+      %h3 .
+%header
+  %section.nav-wrapper.cf
+    = link_to home_path do
+      .logo
+    %nav.cf
+      %ul
+        %li= link_to 'Home', home_path
+        %li= link_to 'Sport', sport_path
+        %li= link_to 'Music', music_path
+        %li= link_to 'Politic', politic_path
+        %li= link_to 'Economics', economics_path
+        - if user_signed_in?
+          %li= link_to 'Sign out', destroy_user_session_path, :method => 'delete'
+        - else
+          %li= link_to 'Sign in', new_user_session_path

@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
 
-  root 'news#index'
+  get 'home/index'
+
+  root 'home#index'
   devise_for :users, controllers: { registrations: 'registrations' }
-  get 'music/' => 'music#index'
-  get 'sport/' => 'sport#index'
-  get 'economic/' => 'economic#index'
-  get 'politic/' => 'politic#index'
+  get 'home/' => 'home#index', :as => :home
+  get 'music/' => 'music#index', :as => :music
+  get 'sport/' => 'sport#index', :as => :sport
+  get 'economics/' => 'economics#index', :as => :economics
+  get 'politic/' => 'politic#index', :as => :politic
   get 'parse_news' => 'news#parse_news'
-  resources :news, only: [:show, :index]
+  get 'test/' => 'test_parse_news#index'
+
+  post '/news/:id/popular', to: 'news#popularization', as: :popular
+  delete '/news/:id/unpopular', to: 'news#popularization', as: :unpopular
+
+  resources :news, only: [:show]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

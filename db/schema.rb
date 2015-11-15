@@ -11,16 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012111230) do
+ActiveRecord::Schema.define(version: 20151111203136) do
 
   create_table "news", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
     t.string   "branch",      limit: 255
-    t.boolean  "popular"
+    t.boolean  "popular",                   default: false
     t.datetime "date"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "photo",       limit: 255
+    t.string   "video",       limit: 255
   end
 
   create_table "users", force: :cascade do |t|

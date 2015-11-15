@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title BirdInfoCenter
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = favicon_link_tag 'logo.png'
+  %body
+    #preload.row
+      .spinner
+    .main-wrapper
+      = render 'layouts/header'
+      = yield
+      = render 'layouts/footer'
+    = javascript_tag do
+      var current_controller = '#{controller.controller_name}';
+      var current_action = '#{controller.action_name}';
+      select_current_page(current_controller, current_action);

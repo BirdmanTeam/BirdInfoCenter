@@ -12,16 +12,56 @@
  *
  *= require_tree .
  *= require_self
- *= require 'weather_api'
- *= require weather-icons
+ *= require 'yahoo_weather_widget'
  */
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+
+    margin: 100px auto;
+    -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+    0% { -webkit-transform: perspective(120px) }
+    50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+    100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    } 50% {
+          transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+          -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+      } 100% {
+            transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+            -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        }
+}
+
+#preload{
+    display: flex;
+    position: fixed;
+    align-items: center;
+    margin: 0 auto;
+    cursor: wait;
+    z-index: 1002;
+    width: 100%;
+    height: 100%;
+    background-color: #ff9c00;
+}
 
 .cf:after,.cf:before {content: '';display: table;}
 .cf:after {clear: both;}
 .cf {zoom: 1;}
 
 * {
-    margin:0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -61,9 +101,7 @@ h1,h2 {
     font-size: 1.5em;
     position: relative;
     border-bottom: 1px solid #D9D7D7;
-    padding: 0 5%;
-    margin-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 5%;
     text-transform: uppercase;
 }
 
@@ -132,7 +170,7 @@ nav a:hover {
 
 .content-wrapper .articles-wrapper .article {
     float: left;
-    padding: 30px 0;
+    padding: 20px 10px;
     width: 100%;
     display: block;
     position: relative;
@@ -140,7 +178,7 @@ nav a:hover {
 
 .content-wrapper .articles-wrapper .article section img {
     width: 30%;
-    height: 150px;
+    height: 170px;
     padding-right: 1%;
     float: left;
     text-align: center;
@@ -157,7 +195,7 @@ nav a:hover {
 }
 
 .content-wrapper .articles-wrapper .article article:after {
-    content: "More >>";
+    content: "More..";
     right: 10px;
     bottom: 0;
     position: absolute;
@@ -231,10 +269,9 @@ nav a:hover {
 aside, .weather {
     width: 23%;
     background-color:#ff9c00;
-    padding-top: 20px;
     margin: 0 1%;
     margin-top: 15px;
-    padding: 1%;
+    padding: 20px 1% 1% 1%;
     float: right;
     font-family: "LiberSer";
     word-spacing: 2px;
@@ -260,11 +297,19 @@ aside h1 {
 
 aside a{
     text-decoration: underline;
+    color: #eee;
 }
 
-aside a:hover , aside a:visited {
+aside a:visited{
+    color: #ddd;
+}
 
-    color:#fff;
+aside a:hover{
+    color: #fff
+}
+
+.article-id{
+    text-decoration: none;
 }
 
 aside .news-item{
@@ -378,4 +423,13 @@ blockquote footer a{
 
 .admin-panel form{
     margin-left:20px;
+}
+
+.popular-btn{
+    text-align: right;
+    margin-top: 15px;
+}
+
+.article{
+    margin-bottom: 15px;
 }

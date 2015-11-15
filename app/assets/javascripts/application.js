@@ -29,7 +29,7 @@ function select_current_page(controller_name, controller_action){
     }
     if (do_active) {
         switch (controller_name) {
-            case 'news':
+            case 'home':
                 menu_elems.eq(0).addClass('choosen-grope');
                 break;
             case 'sport':
@@ -41,7 +41,7 @@ function select_current_page(controller_name, controller_action){
             case 'politic':
                 menu_elems.eq(3).addClass('choosen-grope');
                 break;
-            case 'economic':
+            case 'economics':
                 menu_elems.eq(4).addClass('choosen-grope');
                 break;
             case 'sessions':
@@ -51,9 +51,16 @@ function select_current_page(controller_name, controller_action){
     }
 }
 
-$(document).ready(function(){
+function preload(){
+    setTimeout(function(){
+        $('#preload').remove();
+    }, 1750);
+}
+
+var main = function(){
 
     var $aside = $("#sidebar");
+    preload();
 
     $(window).scroll(function(){
         if ( $(this).scrollTop() > 500 && !$aside.hasClass("sidebarfixed")){
@@ -64,4 +71,7 @@ $(document).ready(function(){
             $aside.removeClass("sidebarfixed");
         }
     });
-});
+};
+
+$(document).ready(main);
+$(document).on('page:load', main);

@@ -1,0 +1,7 @@
+%section.content-wrapper.cf
+  %article.articles-wrapper
+    = render 'news/articles', :collection => @music
+    = will_paginate @music
+  = render 'news/sidebar', collection: @popular
+  .weather
+    = raw @weather_api
