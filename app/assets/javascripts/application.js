@@ -29,7 +29,7 @@ function select_current_page(controller_name, controller_action){
     }
     if (do_active) {
         switch (controller_name) {
-            case 'news':
+            case 'home':
                 menu_elems.eq(0).addClass('choosen-grope');
                 break;
             case 'sport':
